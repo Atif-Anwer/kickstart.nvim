@@ -1,0 +1,108 @@
+Neovim Configuration Usage Guide
+============================
+
+This guide covers the main features and keybindings for your Neovim configuration.
+
+Tree View (Neo-tree)
+-------------------
+- <leader>e - Toggle file explorer
+- <leader>E - Focus file explorer
+
+Floating Terminal
+----------------
+- <Ctrl-\> - Toggle floating terminal
+- <Esc><Esc> - Exit terminal mode
+- Terminal automatically opens in float mode with shading
+
+Python Debugging with DAP
+------------------------
+
+1. Environment Setup:
+   - Ensure debugpy is installed in your Conda environment:
+     ```
+     conda activate your_environment
+     pip install debugpy
+     ```
+
+2. Selecting Python Environment:
+   - <leader>dp - Open Python interpreter selection
+   - Shows list of available Conda environments
+   - Automatically detects active Poetry, Virtualenv, or Conda environments
+
+3. Basic Debug Controls:
+   - <F5> - Start/Continue debugging
+   - <F1> - Step Into
+   - <F2> - Step Over
+   - <F3> - Step Out
+   - <F7> - Toggle debug UI
+   - <leader>b - Toggle breakpoint
+   - <leader>B - Set conditional breakpoint
+
+4. Available Debug Configurations:
+   a) Regular Python Files:
+      - Opens file in current buffer
+      - Supports command line arguments input
+      - Automatically uses selected Python environment
+
+   b) Django Projects:
+      - Automatically detects manage.py
+      - Runs with --noreload flag
+      - Configure through Debug UI
+
+   c) FastAPI Applications:
+      - Uses uvicorn server
+      - Default: main:app --reload
+      - Customizable arguments
+
+5. Debug UI Layout:
+   Left Panel:
+   - Variables and scope
+   - Breakpoints list
+   - Stack trace
+   - Watch expressions
+
+   Bottom Panel:
+   - Debug console
+   - REPL for interaction
+
+Environment Detection Priority:
+-----------------------------
+The debugger automatically detects Python interpreters in this order:
+1. Poetry environment (if present)
+2. Active virtual environment (VIRTUAL_ENV)
+3. Active Conda environment (CONDA_PREFIX)
+4. System Python (fallback)
+
+Common Workflows
+--------------
+
+1. Regular Python File Debugging:
+   - Open Python file
+   - Press <leader>dp to select environment (if needed)
+   - Set breakpoints with <leader>b
+   - Press <F5> to start debugging
+   - Use <F1>/<F2>/<F3> to step through code
+   - View variables in debug UI (<F7>)
+
+2. Django Development:
+   - Navigate to Django project
+   - Select appropriate environment
+   - Set breakpoints in views/models
+   - Choose "Django" configuration
+   - Debug with full web server context
+
+3. FastAPI Development:
+   - Open main FastAPI file
+   - Select environment
+   - Choose "FastAPI" configuration
+   - Debug with hot-reload support
+
+Tips and Tricks
+--------------
+1. Use <F7> to toggle the debug UI when you need more screen space
+2. Set conditional breakpoints for complex debugging scenarios
+3. The REPL in debug UI allows for live code execution
+4. Watch expressions can monitor variable values
+5. Terminal can be used alongside debugging with <Ctrl-\>
+
+Note: <leader> key is typically the space bar or backslash (\)
