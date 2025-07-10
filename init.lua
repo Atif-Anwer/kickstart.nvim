@@ -896,13 +896,13 @@ require('lazy').setup({
   },
   { -- Floating terminal
     'akinsho/toggleterm.nvim',
-    version = "*",
+    version = '*',
     config = true,
     opts = {
       open_mapping = [[<c-\>]],
       direction = 'float',
-      shade_terminals = true
-    }
+      shade_terminals = true,
+    },
   },
   -- { -- you can easily change to a different colorscheme.
   --   -- change the name of the colorscheme plugin below, and then
@@ -950,7 +950,19 @@ require('lazy').setup({
       vim.cmd 'colorscheme ayu'
     end,
   },
-
+  {
+    'shahshlok/vim-coach.nvim',
+    dependencies = {
+      'nvim-telescope/telescope.nvim',
+      'nvim-lua/plenary.nvim',
+    },
+    config = function()
+      require('vim-coach').setup()
+    end,
+    keys = {
+      { '<leader>?', '<cmd>VimCoach<cr>', desc = 'Vim Coach' },
+    },
+  },
   --
   -- Highlight todo, notes, etc in comments
   { 'folke/todo-comments.nvim', event = 'VimEnter', dependencies = { 'nvim-lua/plenary.nvim' }, opts = { signs = false } },
